@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Image Carousel</title>
+    <style>
+        button {
+            padding-left: 8px;
+            padding-top: 15px;
+            padding-bottom: 15px;
+            font-size: 15px;
+            background-color: purple;
+            color: #fff;
+            border: none;
+            cursor: pointer;
+            width: 249px;
+            margin-top: -4px;
+            margin-right: -1px;
+        }
+
+        section {
+            box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+            width: 500px;
+            margin-left: 500px;
+            margin-top: 200px;
+        }
+
+        section img {
+            width: 500px;
+        }
+
+        button:hover {
+            background-color: #CF9FFF;
+        }
+    </style>
+</head>
+
+<body>
+    <section>
+        <img id="sliderImage" src="../Mini_projects2/images/download (1).jpeg" alt="Image">
+        <button id="prevButton">Previous</button>
+        <button id="nextButton">Next</button>
+    </section>
+
+    <script>
+        const images = ["images/royal-enfield-continental-gt-skunk-machine.jpg","images/Royal-Enfield-Continental-GT-Cafe-Racer.jpg","images/Royal-Enfield-Continental-GT-Cafe-Racer-2.jpg"];
+        let currentIndex = 0;
+
+        const sliderImage = document.getElementById("sliderImage");
+        const prevButton = document.getElementById("prevButton");
+        const nextButton = document.getElementById("nextButton");
+
+        function updateImage() {
+            sliderImage.src = images[currentIndex];
+        }
+
+        prevButton.addEventListener("click", () => {
+            currentIndex = (currentIndex - 1 + images.length) % images.length;
+            updateImage();
+        });
+
+        nextButton.addEventListener("click", () => {
+            currentIndex = (currentIndex + 1) % images.length;
+            updateImage();
+        });
+
+        setInterval(() => {
+            currentIndex = (currentIndex + 1) % images.length;
+            updateImage();
+        }, 3000);
+
+        updateImage();
+    </script>
+</body>
+
+</html>
